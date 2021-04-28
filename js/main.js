@@ -18,13 +18,13 @@ for (let paciente of pacientes){
     
     if (peso.textContent < 0 || peso.textContent >= 600){
         imc.textContent = "Peso inválido!";
-        paciente.style.backgroundColor = "lightcoral";
+        paciente.classList.add("paciente-inválido");
         pesoValido = false;
     } 
     
     if (altura.textContent < 0 || altura.textContent >= 3){
         imc.textContent = "Altura inválida!";
-        paciente.style.backgroundColor = "lightcoral";
+        paciente.classList.add("paciente-inválido");
         alturaValida = false;
     }
 
