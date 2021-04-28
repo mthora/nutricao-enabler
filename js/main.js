@@ -16,7 +16,7 @@ for (paciente of pacientes){
     let pesoValido = true;
     let alturaValida = true;
     
-    if (peso.textContent < 0 || peso.textContent >=600){
+    if (peso.textContent < 0 || peso.textContent >= 600){
         imc.textContent = "Peso inválido!";
         peso.style.color = "red";
         imc.style.color = "red";
@@ -31,6 +31,6 @@ for (paciente of pacientes){
     }
 
     if (pesoValido && alturaValida){
-        imc.textContent = Math.floor(peso.textContent/Math.pow(altura.textContent, 2));
+        imc.textContent = (peso.textContent/Math.pow(altura.textContent, 2)).toFixed(2);
     }
 }
