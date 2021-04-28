@@ -7,7 +7,7 @@ const pacientes = document.querySelectorAll("#tabela-pacientes tr");
 
 //Cálculo de IMC
 
-for (paciente of pacientes){
+for (let paciente of pacientes){
 
     const peso = paciente.querySelector(".info-peso");
     const altura = paciente.querySelector(".info-altura");
@@ -18,15 +18,13 @@ for (paciente of pacientes){
     
     if (peso.textContent < 0 || peso.textContent >= 600){
         imc.textContent = "Peso inválido!";
-        peso.style.color = "red";
-        imc.style.color = "red";
+        paciente.style.backgroundColor = "lightcoral";
         pesoValido = false;
     } 
     
     if (altura.textContent < 0 || altura.textContent >= 3){
-        imc.textContent = "Altura inválida!"
-        altura.style.color = "red";
-        imc.style.color = "red";
+        imc.textContent = "Altura inválida!";
+        paciente.style.backgroundColor = "lightcoral";
         alturaValida = false;
     }
 
