@@ -14,7 +14,8 @@ formSubmit.addEventListener("click", (e)=>{
 
     table.appendChild(pacienteTr);
 
-    form.children.value = ""
+    form.reset();
+    
 });
 
 //Helper functions
