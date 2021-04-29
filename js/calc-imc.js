@@ -4,11 +4,12 @@ function calcIMC(w, h, pacienteTr){
 
     let imc = pacienteTr.querySelector(".info-imc");
 
-
     if (validaPesoEAltura(w, h, pacienteTr)){
         imc.textContent = (w/(h*h)).toFixed(2);
-    }
-    return imc
+        return imc
+    };
+
+    return false;
 }
 
 //Aplicação
@@ -30,17 +31,17 @@ function validaPesoEAltura(peso, altura, paciente){
 
     let imc = paciente.querySelector(".info-imc")
 
-    if (peso < 0 || peso >= 600 || isNaN(peso)){
+    if (peso < 0 || peso >= 600){
         imc.textContent = "Peso inválido!";
         paciente.classList.add("paciente-inválido");
 
         return false;
 
-    } else if (altura < 0 || altura > 3 || isNaN(altura)){
+    } else if (altura < 0 || altura > 3){
         imc.textContent = "Altura inválida!";
         paciente.classList.add("paciente-inválido");
 
-        return false
+        return false;
     }
 
     return true;

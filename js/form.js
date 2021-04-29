@@ -12,7 +12,17 @@ formSubmit.addEventListener("click", (e)=>{
 
     const pacienteTr = montaTr(paciente);
 
+    if (!pacienteTr){
+        const error = document.createElement("p");
+        form.appendChild(error);
+        error.style.color = "red"
+        error.textContent = "Altura e/ou peso inválidos."
+
+        return;
+    }
+
     table.appendChild(pacienteTr);
+
 
     form.reset();
     
@@ -42,7 +52,9 @@ function montaTr(paciente) {
     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
     pacienteTr.appendChild(montaTd(undefined ,"info-imc"));
 
-    calcIMC(paciente.peso, paciente.altura, pacienteTr)
+    if (!calcIMC(paciente.peso, paciente.altura, pacienteTr) == true){
+        return false;
+    };
 
     return pacienteTr;
 }
