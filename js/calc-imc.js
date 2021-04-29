@@ -31,13 +31,13 @@ function validaPesoEAltura(peso, altura, paciente){
 
     let imc = paciente.querySelector(".info-imc")
 
-    if (peso < 0 || peso >= 600 || isNaN(peso)){
+    if (peso < 0 || peso >= 600 || isNaN(peso) || peso==""){
         imc.textContent = "Peso inválido!";
         paciente.classList.add("paciente-inválido");
 
         return false;
 
-    } else if (altura < 0 || altura > 3 || isNaN(altura)){
+    } else if (altura < 0 || altura > 3 || isNaN(altura || altura == "")){
         imc.textContent = "Altura inválida!";
         paciente.classList.add("paciente-inválido");
 
