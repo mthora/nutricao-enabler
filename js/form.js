@@ -13,6 +13,8 @@ formSubmit.addEventListener("click", (e)=>{
     const pacienteTr = montaTr(paciente);
 
     table.appendChild(pacienteTr);
+
+    form.children.value = ""
 });
 
 //Helper functions
@@ -33,18 +35,11 @@ function montaTr(paciente) {
     const pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
 
-    const alturaTd = montaTd(paciente.altura, "info-altura");
-    const pesoTd = montaTd(paciente.peso, "info-peso");
-    const gorduraTd = montaTd(paciente.gordura, "info-gordura");
-    const nomeTd = montaTd(paciente.nome, "info-nome")
-    const imcTd = montaTd(undefined ,"info-imc");
-
-
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
+    pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(montaTd(undefined ,"info-imc"));
 
     calcIMC(paciente.peso, paciente.altura, pacienteTr)
 
