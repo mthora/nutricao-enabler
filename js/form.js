@@ -8,6 +8,12 @@ formSubmit.addEventListener("click", (e)=>{
     const form = document.getElementById("form-add");
     const table = document.getElementById("tabela-pacientes");
 
+    const erro = document.getElementById("erro");
+
+    if (erro){
+        erro.remove();
+    }
+
     const paciente = obterPacienteFormulário(form);
 
     const pacienteTr = montaTr(paciente);
@@ -15,8 +21,9 @@ formSubmit.addEventListener("click", (e)=>{
     if (!pacienteTr){
         const error = document.createElement("p");
         form.appendChild(error);
+        error.id = "erro";
         error.style.color = "red"
-        error.textContent = "Altura e/ou peso inválidos."
+        error.textContent = "Altura e/ou peso inválidos.";
 
         return;
     }
