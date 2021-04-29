@@ -1,34 +1,47 @@
-//Alteração de título
-
-const obj = document.getElementById("title");
-obj.textContent = "Enabler Nutrição";
-
-const pacientes = document.querySelectorAll("#tabela-pacientes tr");
-
 //Cálculo de IMC
+
+function calcIMC(w, h, pacienteTr){
+
+    let imc = pacienteTr.querySelector(".info-imc");
+
+
+    if (validaPesoEAltura(w, h, pacienteTr)){
+        imc.textContent = (w/(h*h)).toFixed(2);
+    }
+    return imc
+}
+
+//Aplicação
+
+const pacientes = document.querySelectorAll(".paciente")
 
 for (let paciente of pacientes){
 
     const peso = paciente.querySelector(".info-peso");
     const altura = paciente.querySelector(".info-altura");
-    let imc = paciente.querySelector(".info-imc");
 
-    let pesoValido = true;
-    let alturaValida = true;
-    
-    if (peso.textContent < 0 || peso.textContent >= 600){
+    calcIMC(peso.textContent, altura.textContent, paciente);
+
+}
+
+//Helper Functions
+
+function validaPesoEAltura(peso, altura, paciente){
+
+    let imc = paciente.querySelector(".info-imc")
+
+    if (peso < 0 || peso >= 600){
         imc.textContent = "Peso inválido!";
         paciente.classList.add("paciente-inválido");
-        pesoValido = false;
-    } 
-    
-    if (altura.textContent < 0 || altura.textContent >= 3){
+
+        return false;
+
+    } else if (altura < 0 || altura > 3){
         imc.textContent = "Altura inválida!";
         paciente.classList.add("paciente-inválido");
-        alturaValida = false;
+
+        return false
     }
 
-    if (pesoValido && alturaValida){
-        imc.textContent = (peso.textContent/Math.pow(altura.textContent, 2)).toFixed(2);
-    }
+    return true;
 }
