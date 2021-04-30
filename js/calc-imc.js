@@ -2,14 +2,15 @@
 
 function calcIMC(w, h, pacienteTr){
 
+    let err = validaPesoEAltura(pacienteTr);
     let imc = pacienteTr.querySelector(".info-imc");
 
-    if (validaPesoEAltura(w, h, pacienteTr)){
+    if (err.length == 0){
         imc.textContent = (w/(h*h)).toFixed(2);
         return imc;
     };
 
-    return false;
+    return err;
 }
 
 //Aplicação
@@ -27,22 +28,36 @@ for (let paciente of pacientes){
 
 //Helper Functions
 
-function validaPesoEAltura(peso, altura, paciente){
+function validaPesoEAltura(paciente){
 
-    let imc = paciente.querySelector(".info-imc")
+    let err = [];
+    let imc = paciente.querySelector(".info-imc");
+    let peso = paciente.querySelector(".info-peso").textContent;
+    let altura = paciente.querySelector(".info-altura").textContent;
+    let nome = paciente.querySelector(".info-nome").textContent;
+    let gordura = paciente.querySelector(".info-gordura").textContent;
 
     if (peso < 0 || peso >= 600 || isNaN(peso) || peso==""){
         imc.textContent = "Peso inválido!";
         paciente.classList.add("paciente-inválido");
-
-        return false;
-
-    } else if (altura < 0 || altura > 3 || isNaN(altura || altura == "")){
+        err.push("Peso inválido!");
+    } 
+    
+    if (altura < 0 || altura > 3 || isNaN(altura) || altura == ""){
         imc.textContent = "Altura inválida!";
         paciente.classList.add("paciente-inválido");
-
-        return false;
+        err.push("Altura inválida!")
     }
 
-    return true;
+    if (nome == ""){
+        paciente.classList.add("paciente-inválido");
+        err.push("O nome deve ser preenchido!")
+    }
+
+    if (gordura == ""){
+        paciente.classList.add("paciente-inválido");
+        err.push("A gordura deve ser preenchida!")
+    }
+
+    return err;
 }

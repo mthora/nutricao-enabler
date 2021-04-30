@@ -7,23 +7,22 @@ formSubmit.addEventListener("click", (e)=>{
 
     const form = document.getElementById("form-add");
     const table = document.getElementById("tabela-pacientes");
+    const listaErro = document.getElementById("lista-erro");
 
-    const erro = document.getElementById("erro");
-
-    if (erro){
-        erro.remove();
-    }
+    listaErro.innerHTML = "";
 
     const paciente = obterPacienteFormulário(form);
 
     const pacienteTr = montaTr(paciente);
 
-    if (!pacienteTr){
-        const error = document.createElement("p");
-        form.appendChild(error);
-        error.id = "erro";
-        error.style.color = "red"
-        error.textContent = "Altura e/ou peso inválidos.";
+    if (pacienteTr instanceof Array && pacienteTr.length > 0){
+
+        for (erro of pacienteTr){
+            const msg = document.createElement("li");
+            msg.textContent = erro;
+            msg.classList.add("erro")
+            listaErro.appendChild(msg);
+        }
 
         return;
     }
@@ -59,11 +58,13 @@ function montaTr(paciente) {
     pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
     pacienteTr.appendChild(montaTd(undefined ,"info-imc"));
 
-    if (!calcIMC(paciente.peso, paciente.altura, pacienteTr) == true){
-        return false;
-    };
+    const err = calcIMC(paciente.peso, paciente.altura, pacienteTr);
 
-    return pacienteTr;
+    if (err.length > 0){
+        return err;
+    } else{
+        return pacienteTr;
+    }
 }
 
 function montaTd(texto, classe){
