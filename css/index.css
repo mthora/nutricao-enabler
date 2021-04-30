@@ -65,7 +65,7 @@ td, th {
 	text-align: center;
 }
 
-tr:active, tr:hover{
+.paciente:active, .paciente:hover{
 	cursor: pointer;
 	background-color: rgb(180, 55, 55);
 }
@@ -113,6 +113,7 @@ button{
 	background-color:#0c8cd3;
 	border-color: #04324c;
 	width: 20%;
+	min-height:60px;
     display: block;
     clear: both;
     margin: 10px 0px;
