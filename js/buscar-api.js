@@ -7,12 +7,18 @@ botaoAdicionar.addEventListener("click", function(){
     xhr.send();
 
     xhr.addEventListener("loadend", ()=>{
-        const res = xhr.responseText;
-        const pacientes = JSON.parse(res);
-        for (paciente of pacientes){
-            const pacienteTr = montaTr(paciente);
-            const table = document.getElementById("tabela-pacientes");
-            table.appendChild(pacienteTr);
+
+        if (xhr.status == 200){
+            const res = xhr.responseText;
+            const pacientes = JSON.parse(res);
+            for (paciente of pacientes){
+                const pacienteTr = montaTr(paciente);
+                const table = document.getElementById("tabela-pacientes");
+                table.appendChild(pacienteTr);
+            } 
+        } else{
+            const erro = document.getElementById("ajax-erro");
+            erro.classList.remove("escondido");
         }
     })
 });
