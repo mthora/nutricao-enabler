@@ -15,9 +15,7 @@ function calcIMC(w, h, pacienteTr){
 
 //Aplicação
 
-const pacientes = document.querySelectorAll(".paciente")
-
-for (let paciente of pacientes){
+for (let paciente of document.querySelectorAll(".paciente")){
 
     const peso = paciente.querySelector(".info-peso");
     const altura = paciente.querySelector(".info-altura");
